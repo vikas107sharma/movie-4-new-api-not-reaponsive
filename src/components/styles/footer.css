@@ -1,0 +1,6 @@
+@media only screen and (max-width: 430px) {
+    li,a,span{
+        font-size: 11px !important;
+    }
+    
+  }

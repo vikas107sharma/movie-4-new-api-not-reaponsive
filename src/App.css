@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat&family=Open+Sans&family=Roboto&display=swap");
+
+/* font-family: 'Lobster', cursive;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Roboto', sans-serif; */
+
+* {
+  font-family: "Open Sans", sans-serif;
+}
+
+.box_shadow {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.gradient {
+  background: linear-gradient(
+    180deg,
+    rgba(24, 24, 27, 1),
+    rgba(24, 24, 27, 0.4)
+  ) !important;
+}
+
+@media only screen and (max-width: 430px) {
+  h1 {
+    font-size: 20px !important;
+  }
+  p {
+    font-size: 10px;
+  }
+}

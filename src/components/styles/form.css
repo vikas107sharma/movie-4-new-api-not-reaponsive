@@ -1,0 +1,38 @@
+.form {
+  position: relative;
+  background: linear-gradient(180deg, rgba(24, 24, 27, 1), rgba(24, 24, 27, 0.8),rgba(24, 24, 27, 0.6), rgba(24, 24, 27, 0.4), rgba(24, 24, 27, 0.2));
+  justify-content: center;
+  align-items: center;
+}
+
+.form::before {
+  content: "";
+  background: url("../../assets/nflix_bg_img.png") no-repeat center center/cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.form_heading{
+  font-family: 'Roboto', sans-serif;
+  color: aliceblue;
+  font-size: 3.8vw !important;
+  font-weight: 900;
+}
+
+@media only screen and (max-width: 430px) {
+  .form{
+    height: 70vh !important;
+  }
+  .Buttons{
+    font-size: 15px !important;
+    padding: 3px 6px 3px 6px !important;
+  }
+  .form_input{
+    width: 70% !important;
+    height: 23px !important;
+  }
+}

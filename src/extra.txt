@@ -1,0 +1,334 @@
+Testing
+
+{/* <SkeletonTheme baseColor="#202020" highlightColor="#444">
+                  <div className="w-[250px] h-[300px] movie_card m-auto mt-3 mb-10 transition-all border-solid border-2 border-zinc-900 p-2 shadow-lg shadow-zinc-600 ease-out duration-300 hover:scale-105">
+                    <Skeleton style={{ height: "100%", width: "100%" }} />
+                    <p>
+                      <Skeleton />
+                    </p>
+                    <p>
+                      <Skeleton />
+                    </p>
+                  </div>
+                </SkeletonTheme>; */}
+
+import React from "react";
+import "./styles/form.css";
+import { Link } from "react-router-dom";
+
+const Form = ({ handleSubmit, setQ, q }) => {
+  return (
+    <div className="w-100% h-screen flex form">
+      <div className="input_group w-[70%] flex flex-col text-center gap-4 justify-center items-center">
+        <h1 className="form_heading">
+          Search Unlimited Movies and Series
+        </h1>
+        <p className="text-white tracking-wider">Watch anywhere, anytime</p>
+        <div className="rounded-3xl">
+          <form onSubmit={handleSubmit}>
+            <div className="flex justify-center items-center">
+            <input
+              className="p-2 form_input w-[300px] pl-3 pr-3 outline-none rounded-s-sm text-sm"
+              type="text"
+              value={q}
+              placeholder="Search movies or TV series"
+              onChange={(e) => {
+                setQ(e.target.value);
+              }}
+            />
+            <button
+              className="bg-red-600 hover:bg-red-700 Buttons text-sm rounded-e-sm text-white p-2 pl-2 pr-2"
+              type="submit"
+            >
+              Search
+            </button>
+            </div>
+          </form>
+            <div className="flex justify-center items-center mt-5 gap-3">
+            <Link to="/login" class="hover:bg-red-600 Buttons text-sm text-red-700 font-semibold bg-white hover:text-white py-2 px-4 border border-red-600 hover:border-transparent rounded-lg">
+            Sign in
+          </Link>
+          <Link to="/signup" class="bg-red-600 text-sm Buttons hover:bg-red-700 text-white font-bold py-2 px-4 border border-red-600 rounded-lg">
+            Signup
+          </Link>
+            </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Form;
+
+
+
+movieListing
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { getAllMovies } from "../../features/movies/MovieSlice";
+import MovieCard from "../MovieCard/MovieCard";
+
+const MovieListing = () => {
+  const movies = useSelector(getAllMovies);
+  console.log("List of movies from getaAllMovies", movies);
+  let renderMovies = "";
+
+  renderMovies =
+    movies.Response === "True" ? (
+      movies.Search.map((movie, index) => {
+        return <MovieCard key={index} data={movie} />;
+      })
+    ) : (
+      <div className="movies_error">
+        <h3>{movies.Error}</h3>
+      </div>
+    );
+
+  return (
+    <div className="movie_wrapper">
+      <div className="movie_list">
+        <h2>Movies</h2>
+        <div className="movie_container">{renderMovies}</div>
+      </div>
+    </div>
+  );
+};
+
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from "react-responsive-carousel";
+<Carousel showThumbs={false} showStatus={false} transitionTime={3} autoPlay={true} infiniteLoop={true} ></Carousel>
+
+header
+
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
+const Header = ({ setTerm, setT, setU, home }) => {
+  const [q, setQ] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Q ', q)
+    setTerm(q);
+    setQ("");
+    setT(false);
+    setTimeout(false);
+  };
+
+  return (
+    <div className="flex h-[80px] justify-around items-center bg-slate-400 m-auto">
+      <div className="bg-orange-500">
+        <Link to="/">
+          <h1 className="bg-red-200 inline-block">Logo</h1>
+        </Link>
+      </div>
+      <div className="bg-blue-200">
+        { home===true ? <form onSubmit={handleSubmit}>
+          <span>search icon</span>
+          <input
+            className="bg-green-300 outline-none"
+            type="text"
+            placeholder="Search movies or series"
+            value={q}
+            onChange={(e) => {
+              console.log(e.target.value)
+              setQ(e.target.value);
+            }}
+          />
+          <button type="submit">Search</button>
+        </form> : (
+          <div>
+            <Link to='/movies'>Movies Page</Link>
+            <Link to='/series'>Series Page</Link>
+          </div>
+        )}
+      </div>
+      <div className="flex gap-1">
+        <button>Dark</button>
+        <button>Login</button>
+        <button>Register</button>
+      </div>
+    </div>
+  );
+};
+
+export default Header;
+
+
+
+
+series
+  // series: {
+  //   Search: [
+  //     {
+  //       Title: "Batman: The Animated Series",
+  //       Year: "1992–1995",
+  //       imdbID: "tt0103359",
+  //       Type: "series",
+  //       Poster:
+  //         "https://m.media-amazon.com/images/M/MV5BOTM3MTRkZjQtYjBkMy00YWE1LTkxOTQtNDQyNGY0YjYzNzAzXkEyXkFqcGdeQXVyOTgwMzk1MTA@._V1_SX300.jpg",
+  //     },
+  //     {
+  //       Title: "Batman Beyond",
+  //       Year: "1999–2001",
+  //       imdbID: "tt0147746",
+  //       Type: "series",
+  //       Poster:
+  //         "https://m.media-amazon.com/images/M/MV5BZWJhNjA4YTAtODBlMS00NjIzLThhZWUtOGYxMGM3OTRmNDZmXkEyXkFqcGdeQXVyNjk1Njg5NTA@._V1_SX300.jpg",
+  //     },
+  //     {
+  //       Title: "Batman",
+  //       Year: "1966–1968",
+  //       imdbID: "tt0059968",
+  //       Type: "series",
+  //       Poster:
+  //         "https://m.media-amazon.com/images/M/MV5BYTc5NGZhNjktOTVhNi00NzBmLTk1MTgtMjEzNDI0OWYxYWVlXkEyXkFqcGdeQXVyMTEyNzgwMDUw._V1_SX300.jpg",
+  //     },
+  //     {
+  //       Title: "The New Batman Adventures",
+  //       Year: "1997–1999",
+  //       imdbID: "tt0118266",
+  //       Type: "series",
+  //       Poster:
+  //         "https://m.media-amazon.com/images/M/MV5BY2JkYjE4MWYtMGJlZC00OWVhLWJlMmUtNGQzYjM0ZDUxNGI2XkEyXkFqcGdeQXVyMjM5NDQzNTk@._V1_SX300.jpg",
+  //     },
+  //     {
+  //       Title: "The Batman",
+  //       Year: "2004–2008",
+  //       imdbID: "tt0398417",
+  //       Type: "series",
+  //       Poster:
+  //         "https://m.media-amazon.com/images/M/MV5BZDExMWQ5MDQtMWNjNy00M2EzLWE1M2EtYzFhNDVhM2Q5MDI1XkEyXkFqcGdeQXVyNTA4NzExMDg@._V1_SX300.jpg",
+  //     },
+  //     {
+  //       Title: "Batman: The Brave and the Bold",
+  //       Year: "2008–2011",
+  //       imdbID: "tt1213218",
+  //       Type: "series",
+  //       Poster:
+  //         "https://m.media-amazon.com/images/M/MV5BYzAyMzZjMDMtYTYyZS00NGJlLWI2ZmQtZTQ3ZGJmNjYwZWFiXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg",
+  //     },
+  //     {
+  //       Title: "Beware the Batman",
+  //       Year: "2013–2014",
+  //       imdbID: "tt2329077",
+  //       Type: "series",
+  //       Poster:
+  //         "https://m.media-amazon.com/images/M/MV5BMjY2ZmMyZTMtMDBiYi00MTZlLWFmZjAtYzE2NWE4OTBmYTJiXkEyXkFqcGdeQXVyMTI1MzYzODMy._V1_SX300.jpg",
+  //     },
+  //     {
+  //       Title: "The Batman/Superman Hour",
+  //       Year: "1968–1969",
+  //       imdbID: "tt0062544",
+  //       Type: "series",
+  //       Poster:
+  //         "https://m.media-amazon.com/images/M/MV5BMzg5YTIzNjktZDU1MS00YmVhLWJjY2ItNWE5NjQ3Nzg1OTAwXkEyXkFqcGdeQXVyMTEyNzgwMDUw._V1_SX300.jpg",
+  //     },
+  //     {
+  //       Title: "The New Adventures of Batman",
+  //       Year: "1977–1978",
+  //       imdbID: "tt0075543",
+  //       Type: "series",
+  //       Poster:
+  //         "https://m.media-amazon.com/images/M/MV5BOTI0MDgyYjUtNGQxMS00MzFlLTllMGUtZDRhZmFjYzgwZjg3XkEyXkFqcGdeQXVyMTEyNzgwMDUw._V1_SX300.jpg",
+  //     },
+  //     {
+  //       Title: "Batman Unlimited",
+  //       Year: "2015–2016",
+  //       imdbID: "tt4818178",
+  //       Type: "series",
+  //       Poster:
+  //         "https://m.media-amazon.com/images/M/MV5BNTI0M2ZkYmItNDEyZi00ODMzLWIxMzktNjY1MjA5ZTFjZDMzXkEyXkFqcGdeQXVyNTQzMjAxMzA@._V1_SX300.jpg",
+  //     },
+  //   ],
+  //   totalResults: "51",
+  //   Response: "True",
+  // },
+
+
+  movies
+    // movies: {
+  //   Search: [
+  //     {
+  //       Title: "Batman Begins",
+  //       Year: "2005",
+  //       imdbID: "tt0372784",
+  //       Type: "movie",
+  //       Poster:
+  //         "https://m.media-amazon.com/images/M/MV5BOTY4YjI2N2MtYmFlMC00ZjcyLTg3YjEtMDQyM2ZjYzQ5YWFkXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+  //     },
+  //     {
+  //       Title: "Batman v Superman: Dawn of Justice",
+  //       Year: "2016",
+  //       imdbID: "tt2975590",
+  //       Type: "movie",
+  //       Poster:
+  //         "https://m.media-amazon.com/images/M/MV5BYThjYzcyYzItNTVjNy00NDk0LTgwMWQtYjMwNmNlNWJhMzMyXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+  //     },
+  //     {
+  //       Title: "The Batman",
+  //       Year: "2022",
+  //       imdbID: "tt1877830",
+  //       Type: "movie",
+  //       Poster:
+  //         "https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_SX300.jpg",
+  //     },
+  //     {
+  //       Title: "Batman",
+  //       Year: "1989",
+  //       imdbID: "tt0096895",
+  //       Type: "movie",
+  //       Poster:
+  //         "https://m.media-amazon.com/images/M/MV5BZDNjOGNhN2UtNmNhMC00YjU4LWEzMmUtNzRkM2RjN2RiMjc5XkEyXkFqcGdeQXVyMTU0OTM5ODc1._V1_SX300.jpg",
+  //     },
+  //     {
+  //       Title: "Batman Returns",
+  //       Year: "1992",
+  //       imdbID: "tt0103776",
+  //       Type: "movie",
+  //       Poster:
+  //         "https://m.media-amazon.com/images/M/MV5BOGZmYzVkMmItM2NiOS00MDI3LWI4ZWQtMTg0YWZkODRkMmViXkEyXkFqcGdeQXVyODY0NzcxNw@@._V1_SX300.jpg",
+  //     },
+  //     {
+  //       Title: "Batman & Robin",
+  //       Year: "1997",
+  //       imdbID: "tt0118688",
+  //       Type: "movie",
+  //       Poster:
+  //         "https://m.media-amazon.com/images/M/MV5BMGQ5YTM1NmMtYmIxYy00N2VmLWJhZTYtN2EwYTY3MWFhOTczXkEyXkFqcGdeQXVyNTA2NTI0MTY@._V1_SX300.jpg",
+  //     },
+  //     {
+  //       Title: "Batman Forever",
+  //       Year: "1995",
+  //       imdbID: "tt0112462",
+  //       Type: "movie",
+  //       Poster:
+  //         "https://m.media-amazon.com/images/M/MV5BNDdjYmFiYWEtYzBhZS00YTZkLWFlODgtY2I5MDE0NzZmMDljXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
+  //     },
+  //     {
+  //       Title: "The Lego Batman Movie",
+  //       Year: "2017",
+  //       imdbID: "tt4116284",
+  //       Type: "movie",
+  //       Poster:
+  //         "https://m.media-amazon.com/images/M/MV5BMTcyNTEyOTY0M15BMl5BanBnXkFtZTgwOTAyNzU3MDI@._V1_SX300.jpg",
+  //     },
+  //     {
+  //       Title: "Batman v Superman: Dawn of Justice (Ultimate Edition)",
+  //       Year: "2016",
+  //       imdbID: "tt18689424",
+  //       Type: "movie",
+  //       Poster:
+  //         "https://m.media-amazon.com/images/M/MV5BOTRlNWQwM2ItNjkyZC00MGI3LThkYjktZmE5N2FlMzcyNTIyXkEyXkFqcGdeQXVyMTEyNzgwMDUw._V1_SX300.jpg",
+  //     },
+  //     {
+  //       Title: "Batman: The Killing Joke",
+  //       Year: "2016",
+  //       imdbID: "tt4853102",
+  //       Type: "movie",
+  //       Poster:
+  //         "https://m.media-amazon.com/images/M/MV5BMTdjZTliODYtNWExMi00NjQ1LWIzN2MtN2Q5NTg5NTk3NzliL2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg",
+  //     },
+  //   ],
+  //   totalResults: "431",
+  //   Response: "True",
+  // },

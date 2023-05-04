@@ -1,0 +1,53 @@
+
+.movie_img{
+  position: absolute;
+  width: 100vw;
+  z-index: -1;
+  /* top: -100px; */
+  min-height: 100vh;
+}
+
+.movie_gradient{
+  background: linear-gradient(180deg, rgba(24,24,27,1), rgba(24,24,27,0.4));
+}
+
+.page_gradient{
+  background: linear-gradient(180deg, rgba(24,24,27,1), rgba(24,24,27,0.9));
+}
+
+.movie_title{
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media only screen and (max-width: 1030px) {
+    .movie_card{
+      width: 260px !important;
+    }
+  }
+@media only screen and (max-width: 770px) {
+    .movie_card{
+      width: 220px !important;
+    }
+  }
+
+@media only screen and (max-width: 430px) {
+    .movie_card{
+      width: 150px !important;
+    }
+    .reduce_padding{
+        padding-top: 80px !important;
+        padding-bottom: 20px !important;
+    }
+    .top_carousel{
+      height: 50vh !important;
+    }
+  }
+
+@media only screen and (max-width: 321px) {
+    .movie_card{
+      width: 130px !important;
+    }
+  }
