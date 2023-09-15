@@ -31,7 +31,7 @@ const SingleMoviePageCard = ({ movie }) => {
         style={{
           overflow: "hidden",
           position: "fixed",
-          width: "100vw",
+          width: "100vw", 
           zIndex: "-1",
           height: "100vh",
         }}
