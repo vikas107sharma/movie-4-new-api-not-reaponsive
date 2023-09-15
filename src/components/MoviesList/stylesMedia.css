@@ -117,7 +117,7 @@
   min-height: 100%;
   min-width: 1024px;
 
-  width: auto;
+  width: 100vw;
   height: 100vh;
 
   position: absolute;
@@ -125,3 +125,9 @@
   left: 0;
   z-index: -1;
 } 
+
+@media only screen and (max-width: 430px) {
+  .movie_img{
+    width: auto !important;
+  }
+}
